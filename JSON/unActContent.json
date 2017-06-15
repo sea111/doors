@@ -1,0 +1,36 @@
+{
+	"success":true,
+	"total":12,
+	"data":[
+		{
+			"type":2,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f111.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		},{
+			"type":2,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		},{
+			"type":2,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		},{
+			"type":0,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f222.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		},{
+			"type":0,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		},{
+			"type":0,
+			"brandName":"小钢炮",
+			"PicUrl":"http://image.wpwl.org/uploadfile/3/20150404/new/1428107686492-d8a1a78250bf4cf38358c9a85b11490f.jpg",
+			"activetime":"2017.03.24-2017.04.17"
+		}]
+}

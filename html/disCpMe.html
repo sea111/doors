@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>正品控-优惠券</title>
+	</head>
+	<link rel="stylesheet" href="css/disCp.css" />
+	<body>
+		<div id="box">
+			<div class="top">
+				<i class="bgIcon back" onclick="window.history.go()"></i>
+				<div class="head">优惠券</div>
+			</div>
+			<div id="discountContent">
+				<div class="disCont">
+					
+				</div>
+				<div class="look"><span class="more">查看更多</span>已使用/已过期优惠券</div>
+			</div>
+			<div id="outDiscountContent">
+				<div class="outDiscountBox">
+					<div class="outcont">
+						<div class="outleft">
+							<span class="num"><i class="sign">￥</i>20</span>
+						</div>
+						<div class="line"></div>
+						<div class="outintroduce">
+							<p class="title">优惠券</p>
+							<p class="outIntro">购买指定产品即可使用</p>
+							<p class="outData">时间:<span class="data"> 2017.3-2017.4</span></p>
+						</div>
+					</div>
+					<div class="status">该券已使用</div>
+				</div>	
+				<div class="outDiscountBox">
+					<div class="outcont">
+						<div class="outleft">
+							<span class="num"><i class="sign">￥</i>20</span>
+						</div>
+						<div class="line"></div>
+						<div class="outintroduce">
+							<p class="title">优惠券</p>
+							<p class="outIntro">购买指定产品即可使用</p>
+							<p class="outData">时间:<span class="data"> 2017.3-2017.4</span></p>
+						</div>
+					</div>
+					<div class="status">该券已过期</div>
+				</div>
+			</div>
+			<div class="loading">
+				<div class="middle"><img src="images/scan_net.png" />
+					<p>网络异常，点击
+						<a href="javascript:;" id="wpReload">重新加载</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/iscroll-probe.js" ></script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script type="text/javascript" src="lib/laytpl.js" ></script>
+	<script type="text/javascript" src="js/disCp.js" ></script>
+	<script type="text/html" id="discountBoxHtml">
+		{{# for(var i=0;i<d.length;i++){ }}
+			<div class="discountBox">
+				<div class="cont">
+					<div class="left">
+						<span class="num"><i class="sign">￥</i>{{d[i].num}}</span>
+					</div>
+					<div class="line"></div>
+					<div class="introduce">
+						<p class="title">{{d[i].title}}</p>
+						<p class="intro">{{d[i].intro}}</p>
+						<p class="datas">时间:<span class="time"> {{d[i].data}}</span></p>
+					</div>
+				</div>
+				<div class="status"><p class="title">{{d[i].title}}</p>
+						<p class="intro">{{d[i].intro}}</p>
+						<p class="datas">时间:<span class="time"> {{d[i].data}}</span></p></div>
+			</div>
+		{{# } }}
+	</script>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+		(function(){
+			var count=Math.ceil($('.discountBox').width()/19);
+			$('.discountBox').width(19*count);
+		})();	
+		(function(){
+			var count=Math.ceil($('.outDiscountBox').width()/19);
+			$('.outDiscountBox').width(19*count);
+		})()
+	</script>
+</html>
+

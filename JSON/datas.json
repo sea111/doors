@@ -1,0 +1,41 @@
+	{
+	    "data" :{
+	        "list" : [
+	        	{
+	                "iconUrl": "http://image.wpwl.org:80/uploadfile/3/20150408/new/1428482900661-d88e8050aeaa461694714ea074bef277.jpg",
+	                "productId" : "259",
+	                "productName" : "U96c6U6210U7076",
+	                "saleStatus" : "返利活动",
+	                "standard" : "小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。",
+	                "actTime" : "2017.3.2-2017.3.3"
+	            },	            
+	            {
+	                "iconUrl" : "",
+	                "productId" : "475",
+	                "productName" : "U96c6U6210U7076",
+	                "saleStatus" : "返利活动",
+	                "standard" : "小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。",
+	                "actTime" : "2017.3.2-2017.3.3"
+	            },
+	            {
+	                "iconUrl" : "http://image.wpwl.org:80/uploadfile/3/20160720/new/1469004270859-f16bdc9e820948ab8b059eda7d2124ee.jpg",
+	                "productId" : "475",
+	                "productName" : "U96c6U6210U7076",
+	                "saleStatus" : "返利活动",
+	                "standard" : "小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。",
+	                "actTime" : "2017.3.2-2017.3.3"
+	            },                  
+	            {
+	                "iconUrl" : "http://image.wpwl.org:80/uploadfile/3/20160924/new/1474678445585-3c9fba5d87c54df8bcce6e3083184084.jpg",
+	                "productId" : "509",
+	                "productName" : "U96c6U6210U7076",
+	                "saleStatus" : "返利活动",
+	                "standard" : "小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。",
+	                "actTime" : "2017.3.2-2017.3.3"
+	            }
+	        ],
+	        "total" : "12"
+	    },
+	    "success" : "true"
+	}
+

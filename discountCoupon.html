@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>正品控-优惠券</title>
+	</head>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<link rel="stylesheet" href="css/discountCoupon.css" />
+	<body>
+		<div class="top">
+			<i class="bg-icon back" id="back"></i>
+			<div>优惠券</div>
+		</div>
+		<div id="box">
+			<!--当前优惠券-->
+			<div id="discountContent" class="current dis_content" content="discountContent">
+				
+			</div>
+			<!--失效优惠券-->
+			<div id="undiscountContent" class="dis_content" content="undiscountContent">
+				
+			</div>
+			<div class="look"><span class="more" content="undiscountContent">查看更多</span>已使用/已过期优惠券</div>
+		</div>
+		<div class="loading">
+			<div class="middle">
+				<img src="images/scan_net.png"/>
+				<p>网络异常，点击<a href="javascript:;" id="wpReload">重新加载</a></p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script src="lib/laytpl.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script type="text/javascript" src="js/discountCoupon.js" ></script>
+	<script type="text/html" id="discountCouponTpl">
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].consume==2){ }}
+				<div class="discountBox" activityId="{{d[i].activityId}}" couponId="{{d[i].receiveCouponId}}" couponName="{{d[i].couponName}}">
+			{{# }else{ }}
+				<div class="discountBox unactivity" activityId="{{d[i].activityId}}" couponId="{{d[i].receiveCouponId}}" couponName="{{d[i].couponName}}">
+			{{# } }}
+				<div class="cont">
+					<div class="left">
+						{{# if(d[i].preferentialWay==0){ }}
+							<span class="num"><i class="sign">￥</i>{{d[i].preferentialAmount}}</span>
+						{{# }else if(d[i].preferentialWay==1){ }}
+							<span class="num">{{d[i].preferentialDiscount}}<i class="sign">折</i></span>
+						{{# } }} 
+					</div>
+					<div class="introduce">
+						<p class="title">{{d[i].couponName}}</p>
+						<p class="intro">购买指定产品可用</p>
+						<p class="time">时间:<span class="time">{{d[i].activityStartTime}}</span>-<span class="time">{{d[i].activityEndTime}}</span></p>
+						{{# if(d[i].consume==2){ }}
+							{{# if(d[i].readStatus==0){ }}
+								<span class="icons"></span>
+							{{# }else if(d[i].readStatus==1){ }}
+								<span class="icon"></span>
+							{{# } }}
+						{{# } }} 
+					</div>
+				</div>	
+				{{# if(d[i].consume==2){ }}
+					<div class="status">还有<span class="number"></span>过期</div>
+				{{# }else if(d[i].consume==9){ }}
+					<div class="status">该优惠券已使用</div>
+				{{# }else if(d[i].consume==1){ }}
+					<div class="status">该优惠券已过期</div>
+				{{# } }} 								
+			</div>
+		{{# } }}
+	</script>
+</html>

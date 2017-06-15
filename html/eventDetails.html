@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正品控-活动详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<script type="text/javascript">
+			if(document.documentElement.clientWidth>760){
+				document.documentElement.style.fontSize=54+"px";
+			}else{
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+			}
+			window.addEventListener("resize",function(){
+				if(document.documentElement.clientWidth>760){
+					document.documentElement.style.fontSize=54+"px";
+				}else{
+					document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+				}
+			},false);
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/commons.css"/>
+		<link rel="stylesheet" type="text/css" href="css/eventDetails.css"/>
+		
+	</head>
+	<body>
+		<div class="top">
+			<i class="bg-icon" id="back"></i>
+			<div></div>
+			<i class="bg-icon" id="share"></i>
+		</div>
+		<div id="wrap">
+			<div class="banner">
+				<img src="images/default_error2.png" alt="" id="poster"/>
+			</div>
+			<div class="info_card">
+				<div class="act_title">
+					<div class="items">
+						<span class="active"><i class="bg-icon l-quote"></i>活动介绍<i class="bg-icon r-quote"></i></span>					
+					</div>
+					<div class="items">					
+						<span class="detial"><strong class="lineS lineL"></strong>DETAIL<strong class="lineS lineR"></strong></span>					
+					</div>
+				</div>
+				<div class="act_content"></div>
+				<div class="act_rebate">
+					<p class="activity_other_rebate">好友可获返利金额：<span>20元</span></p>
+					<p class="activity_rebate">您可获得返利金额：<span>20元</span></p>
+					<p class="rabate_tips">分享越多，返利越多，上不封顶！</p>
+				</div>
+				<div class="act_times">	
+					<i class="bg-icon time"></i>
+					<span class="activeTime">活动时间:<strong class="article" id="act_time"></strong></span> 
+				</div>
+				<div class="act_place">		
+					<i class="bg-icon place"></i>
+					<span class="activePlace">活动地点:<strong class="article" id="act_place"></strong></span>	 
+				</div>
+				<div class="act_btn">
+					<input type="button" class="share_btn" value="分享得返利" />
+				</div>
+			</div>
+			<div class="product_list">
+				<ul>
+				</ul>
+			</div>
+		</div>
+		<div class="loading">
+			<div class="loadEffect"> 
+				<p></p>
+				<span>Loading</span> 
+			</div>
+			<div class="middle" style="display: none;"><img src="images/scan_net.png"/><p>网络异常，点击<a href="javascript:;" id="wpReload">重新加载</a></p></div>
+		</div>
+		<script src="lib/jquery-2.1.0.min.js"></script>
+		<script src="lib/laytpl.js"></script>
+		<script src="lib/wpCommon.js"></script>
+		<script type="text/html" id="product_list_html">
+			{{# for(var i=0;i<d.length;i++){ }}
+				{{# if(i%2==0){ }}
+					<li class="product_item" to="/detail.html?productId={{d[i].productId}}">
+				{{# }else{ }}
+					<li class="product_item last">
+				{{# } }}
+						
+						<div class="img_box">
+							<img src="{{ d[i].iconUrl }}" alt="" />
+							<div class="suspension_tips">
+								<div></div>
+							</div>
+						</div>
+						
+						<div class="product_name">{{ d[i].productName }}</div>
+						<div class="product_code">{{ d[i].productCode }}</div>
+					</li>
+			{{# } }}
+		</script>
+		<script src="lib/layout.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/eventDetails.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>正品控-活动中心</title>
+	</head>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/commons-bak.css"/>
+	<link rel="stylesheet" href="css/activityCenter.css" />
+	<body>
+		<div class="top">
+			<i class="bg-icon" id="back"></i>
+			<div>活动中心</div>
+		</div>
+		<div id="box" class="content">
+			<div class="act_title">
+				<div class="current" content="dis_act_content">我的活动</div>
+				<div content="discountContent">我的返利</div>
+			</div>
+			<!--当前活动-->
+			<div id="dis_act_content" class="current dis_content">
+				
+			</div>
+			<!--当前返利-->
+			<div id="discountContent" class="dis_content">
+				
+			</div>
+			<!--失效返利-->
+			<div id="undiscountContent" class="dis_content">
+				
+			</div>
+			<div class="err_text"></div>
+			<div class="look unshow"><span class="more" content="undiscountContent">查看更多</span>已使用/已过期返利券</div>
+			
+		</div>
+		
+		<div class="loading">
+			<div class="loadEffect"> 
+				<p></p>
+				<span>Loading</span> 
+			</div>
+			<div class="middle" style="display: none;"><img src="images/scan_net.png"/><p>网络异常，点击<a href="javascript:;" id="wpReload">重新加载</a></p></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script src="lib/jquery.dotdotdot.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/laytpl.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/html" id="rebate_vouchers">
+
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].status==2){ }}
+				<div class="discountBox" pid={{ d[i].rebateId }}>
+			{{# }else{ }}
+				<div class="discountBox unactivity" pid={{ d[i].rebateId }}>
+			{{# } }}
+				<div class="cont">
+					<div class="left">
+						<span class="num"><i class="sign">￥</i>{{ d[i].money }}</span>
+					</div>
+					<div class="introduce">
+						<p class="title">{{ d[i].rebateName }}</p>
+						<p class="intro">用户{{ d[i].couponUserPhone }}通过您的分享购买了产品，您可获得{{ d[i].money }}元现金返利</p>
+						<p class="data">时间:<span class="data">{{ d[i].receiveStartTime }}-{{ d[i].receiveEndTime }}</span></p>
+						{{# if(d[i].status==2){ }}
+							{{# if(d[i].readStatus==0){ }}
+								<span class="icons"></span>
+							{{# }else if(d[i].readStatus==1){ }}
+								<span class="icon"></span>
+							{{# } }}
+						{{# } }}
+					</div>
+				</div>
+				{{# if(d[i].status==2){ }}
+					<div class="status">该返利可以兑现了，速去门店兑现吧</div>
+				{{# }else if(d[i].status==9){ }}
+					<div class="status">该返利已兑现</div>
+				{{# }else if(d[i].status==1){ }}
+					<div class="status">该返利已过期</div>
+				{{# }else if(d[i].status==4){ }}
+					<div class="status">该返利已失效</div>
+				{{# } }}
+			</div>
+		{{# } }}
+	</script>
+	<script type="text/html" id="rebate_activity">
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].status==1){ }}
+				<div class="activity_list activity" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }} >
+			{{# }else if(d[i].status==2){ }}
+				<div class="activity_list act_cancel" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }}>
+			{{# }else{ }}
+				<div class="activity_list act_timeout" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }}>
+			{{# } }}
+				<div class="activity_list_title"><span>{{ d[i].heading }}</span></div>
+				<div class="activity_content">
+					<div class="activity_content_left">
+						{{# if(d[i].status==1){ }}
+							<img src="{{ d[i].picUrl}}" errType="now" alt="" />
+						{{# }else if(d[i].status==2){ }}
+							<img src="{{ d[i].picUrl}}" errType="cancel" alt="" />
+						{{# }else{ }}
+							<img src="{{ d[i].picUrl}}" errType="timeout" alt="" />
+						{{# } }}
+						
+					</div>
+					<div class="activity_content_right">
+						<p class="activity_info">
+							<span>{{ d[i].summary }}</span>
+						</p>
+						<p class="activity_time">
+							活动时间：<span>{{d[i].gmtStart}}-{{d[i].gmtEnd}}</span>
+						</p>
+						<div class="activity_status">
+							{{# if(d[i].status==1){ }}
+								<div>进行中</div>
+							{{# }else if(d[i].status==2){ }}
+								<div>已取消</div>
+							{{# }else{ }}
+								<div>已过期</div>
+							{{# } }}
+						</div>
+					</div>
+				</div>
+			</div>
+		{{# } }}
+	</script>
+	<script src="lib/WPBridge.js"></script>
+	<script type="text/javascript" src="lib/wpCommon_bak.js" ></script>
+	<script src="lib/layout.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/activityCenter.js"></script>
+</html>

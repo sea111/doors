@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="test"></div>	
+</body>
+<script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		//倒计时函数只到天为止 传入endDate:2017.04.19
+		function countDownDay(endDate){
+			var startTime=new Date().getTime();
+			var type='day';
+			var endDateArray=endDate.split('.');
+			for(var i=0;i<endDateArray.length;i++){
+				endDateArray[i]=endDateArray[i]*1;
+				console.log(endDateArray[i])
+			}
+			var end=new Date();
+			end.setFullYear(endDateArray[0],endDateArray[1]-1,endDateArray[2]+1);
+			end.setHours(0,0,0);
+			var endTime=end.getTime();
+			var countTime=endTime-startTime;
+			var day=Math.floor(countTime/(60*60*1000*24));
+			if(day===0){
+				day=Math.floor(countTime/(60*60*1000));
+				type='hour';
+			}
+			return {
+				time:day,
+				type:type
+			}
+		}
+		var endDate='2017.04.20'
+		var data=countDownDay(endDate);
+		if(data.type==='day'){
+			$('#test').html('还剩'+data.time+'天');
+		}else if(data.type==='hour'){
+			$('#test').html('还剩'+data.time+'小时');
+		}
+		// $('#test').html('还剩'+day+'天')
+		// function encryptyPhone(phone){
+		// 	phone=phone+'';
+		// 	var newPhone=phone.substring(0,3)+'****'+phone.substring(7);
+		// 	return newPhone;
+		// }
+		// var phone=18758896883;
+		// var newPhone=encryptyPhone(phone);
+		// $('#test').html(newPhone)
+	})
+</script>
+</html>

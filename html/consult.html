@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正品控-consult</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="lib/swipebox.min.css">
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = document.documentElement.clientWidth /7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth /7.5 + "px";
+		},false);
+	</script>
+	<style type="text/css">
+		body, div, dl, dt, dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,select,img{ margin: 0; padding:0}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		a{text-decoration: none;}
+		body{font-size: 0.3rem}
+		.top{width: 100%;height: 0.88rem;background: #333;color: white;font-size: 0.35rem;position: relative;z-index: 9}
+		.bg-icon{width:0.64rem;height:0.64rem;display: block;background: url(images/consult-sprite.png) no-repeat ;background-size:3.2rem 0.64rem;position:absolute;}
+		#back{background-position:0rem 0rem;left:0.1rem;bottom:0.12rem;}
+		.top div{margin: 0 auto;width: 100%;height: 100%;text-align: center;line-height: 0.88rem;}
+		#content{width: 100%;}
+		#content-scroll{padding-bottom:20px}
+		dl{width: 100%;overflow: hidden;border-bottom: 1px solid #E6E6E6;}
+		dt{width: 95%;overflow: hidden;padding:0.2rem 0;border-bottom: 1px solid #F1F1F1;margin: 0 auto;}
+		dl h4{height: 0.55rem;line-height: 0.55rem;padding-left: 0.6rem;font-size: 0.3rem;font-weight: normal;color: #333;position: relative;margin-bottom: 6px}
+		dt i.bg-icon{background-position:-1.92rem 0rem;left: 0;top:-0.05rem}
+		dd i.bg-icon{background-position:-1.28rem 0rem;left: 0;top:-0.05rem}
+		.consult_time{float: right;font-size: 0.24rem;color: #999;margin-right: 0.2rem;}
+		.my_consult{padding: 0 0.6rem;font-size: 0.28rem;color: #666}
+		.reply{padding: 0 0.6rem;font-size: 0.28rem;color: #666}
+		dd{width: 95%;overflow: hidden;padding:0.2rem 0;margin: 0 auto;}
+		.scroller-pullDown, .scroller-pullUp {width: 100%;height: 30px;padding: 10px 0;text-align: center;}
+		.gallery{overflow:hidden;margin-top:0.2rem;position:relative;height:2rem;left:0}
+		.gallery-inner{position:relative;left:0}
+		.gallery div{height:2rem;}
+		.gallery a{float:left;width:2rem;height:2rem;margin-left:0.16rem;}
+		.swipebox img{width:100%;height:100%}
+		#PullUp{position: relative;}
+		#PullUp p{ display:inline-block;width:0.3rem;height:0.3rem;border:1px solid #f9c804;-webkit-animation: load 1s ease infinite;}
+		 @-webkit-keyframes load{
+            0%{
+                transform: rotate(-45deg);
+            }
+            100%{
+                transform: rotate(315deg);
+            }
+        }
+	</style>
+</head>
+<body>
+	<div class="top">
+		<span id="back" class="bg-icon"></span>
+		<div>咨询留言</div>
+	</div>
+	<div id="content">
+		<div id="content-scroll"> 
+	        <div class="consult-area">
+				<dl style="display:none">
+					<dt>
+						<h4><i class="bg-icon"></i><span class="account">我的咨询</span><span class="consult_time">2017-01-05 20:45</span></h4>
+						<p class="my_consult">好吃吗</p>
+						<div class="gallery" style="display:none"><div class="gallery-inner"><a href="" class="swipebox" style="display:none"><img src="" alt="" /></a></div></div>
+					</dt>
+					<dd>
+						<h4><i class="bg-icon"></i>企业答复</h4>
+						<p class="reply">等待企业答复中</p>
+					</dd>
+				</dl>
+			 </div>
+				<div id="PullUp" class="scroller-pullUp" style="display: none;">
+		            <p></p>
+		           	<span>上拉加载</span>
+		        </div>
+	       
+		</div>
+	</div>
+	<script src="lib/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/iscroll-probe.js"></script>
+	<script src="lib/jquery.swipebox.js"></script>
+	<script src="lib/wpCommon.js"></script>
+	<script type="text/javascript">
+		WPBridge.callMethod("JsInvokeNative","wpShowLoadingDialog",{},function(){});
+		window.aesFail = "";
+		//从详情页进入得到参数
+		$(function(){
+			if(localStorage.getItem('productId')){
+				window.prtId=localStorage.getItem('productId');
+				window.key=localStorage.getItem('key');
+				if(localStorage.getItem('userId')){
+					window.userId=localStorage.getItem('userId');
+				}else{
+					window.userId='';
+				}
+			}else{
+				window.prtId=getUrlRequest().productId;
+				WPBridge.callMethod('JsInvokeNative','wpGetUserId',{},function(msg){
+					if(msg.data.result!=''){
+						window.userId=msg.data.result;
+						localStorage.setItem('userId',userId);
+					}
+					getKey(1,4);
+				})
+				
+			}
+		})
+		
+		
+		 function getKey(index,size){
+		 	
+		 	$.ajax({
+				url:wpCommon.Url+'/wpwl/getKey',
+				data:{
+					versionId:"27"
+				},
+				success:function(res){
+					key=res.data;
+					localStorage.setItem('key',res.data);
+					if(localStorage.getItem('userId')){
+						window.userId=localStorage.getItem('userId');
+						WPBridge.callMethod('JsInvokeNative','wpEncrypt',{key:key,params:[userId,prtId]},function(msg){
+							window.aesUserId=msg.data.result[0];
+							window.parValue=msg.data.result[1];
+							wpwlConsult.load(index,size)
+						})
+					}else {
+						window.userId='';
+						window.aesUserId='';
+						WPBridge.callMethod("JsInvokeNative","wpEncrypt",{key:key,params:[prtId]},function(msg){
+							parValue=msg.data.result[0];
+							wpwlConsult.load(index,size)
+						});
+					}
+				}
+			})
+		 }
+		
+		$(function(){
+			if(localStorage.getItem('isFromDetails')){
+				
+				window.res=JSON.parse(localStorage.getItem('consultContent'));
+				var num;	
+				if(res.total>=4){
+					num=4;
+				}else{
+					num=res.total;
+				}
+				if(localStorage.getItem('userId')){
+					window.userId=localStorage.getItem('userId');
+				}else {
+					window.aesUserId='';
+				}
+				
+				WPBridge.callMethod("JsInvokeNative","wpEncrypt",{key:key,params:[prtId]},function(msg){parValue=msg.data.result[0]});
+				wpwlConsult.content(num);
+				wpwlConsult.fresh();
+			}else {
+				getKey(1,4);
+			}
+			
+		})
+		
+		var wpwlConsult={
+			load:function(index,size){
+				WPBridge.callMethod("JsInvokeNative","wpShowLoadingDialog",{},function(){});
+				var that=this;				
+				WPBridge.callMethod('JsInvokeNative','wpEncrypt',{key:key,params:[index,size,userId]},function(msg){
+					var aesIndex=msg.data.result[0];
+					var aesSize=msg.data.result[1];
+						 if (!userId) {
+			                aesUserId = ""
+			            } else {
+			                aesUserId = msg.data.result[2]
+			            }
+						$.ajax({
+							url:wpCommon.Url+"/wpwl/message/listConsultByPage",
+							type:"post",
+							data:{
+								"userId":aesUserId,
+								"productId":parValue,
+								"pageIndex":aesIndex,
+								"pageSize":aesSize,
+								"versionId":"27"
+							},
+							success:function(res){
+								if(res.errMsg=='AES加密解密失败'){
+									if(!aesFail){
+										getKey(index,size);
+										aesFail=true;
+									}
+								//分页
+								}else if(res.data.list.length>=size){
+									window.res=res.data;
+									that.content(size);
+									that.fresh()
+								}else if(res.data.list.length<size){
+									window.res=res.data;
+									that.content(res.data.list.length);
+									that.fresh();
+									lock=false;
+								}
+							},
+							 error: function () {
+			                    WPBridge.callMethod("JsInvokeNative", "wpShowToast", {
+			                        message: "网络异常"
+			                    }, function () {});
+			                    wpCommon.viewShow();
+			                }
+						})
+					})
+//				})
+			},
+			content:function(index){
+				var data=res.list;
+				for(var i=0;i<index;i++){
+					var ele=$("dl").eq(0).clone();
+					ele.find('.my_consult').html(data[i].consult).siblings('h4').find('.consult_time').html(data[i].consultTime.slice(0,-3));
+					for(var j=0;j<data[i].picUrlList.length;j++){
+						var ele2=ele.find(".swipebox").eq(0).clone();
+						ele2.attr("href",data[i].picUrlList[j].picUrl.replace('http:','')).addClass('picSeries').find("img").attr("src",data[i].picUrlList[j].picUrl)
+						ele2.css("display","block")
+						ele.find(".gallery").attr("id","gallery"+j).css("display","block").find("div").append(ele2)
+					}
+					if(data[i].message==""){
+						ele.find(".reply").html("等待企业答复...")
+					}else{
+						ele.find(".reply").html(data[i].message);
+					}
+					if(data[i].userId!=userId){
+						ele.find(".bg-icon").eq(0).css('backgroundPosition','-0.64rem 0');
+						ele.find(".account").html(data[i].mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2'));
+					}else{
+						ele.find(".account").html("我的咨询");
+					}					
+					ele.css("display","block");
+					ele.find(".gallery div").css("width",data[i].picUrlList.length*2.16+"rem");
+					$(".consult-area").append(ele)
+				}
+				$(".picSeries img").click(function(){
+					WPBridge.callMethod("JsInvokeNative","wpBackListener",{back:false},function(){
+						$("#swipebox-close").click();	
+					});
+				})
+				$('img').each(function(){
+					var dfd=$.Deferred();
+					$(this).bind('load',function(){
+				 		dfd.resolve();
+				 	}).bind('error',function(){
+				 		$(this).attr('src',"images/default_error2.png")
+				 	})
+				})
+				setTimeout(function(){
+					myScroll.refresh()
+				},200);
+				$(".picSeries").swipebox();
+				scrollHorizon();
+			},
+			fresh:function(){
+				var innerHei=$("#content-scroll").height();
+				var wholeHei=document.documentElement.clientHeight-document.documentElement.clientWidth /7.5*0.88;
+				if(innerHei>wholeHei){
+					$("#content").css("height",wholeHei+"px")
+				}
+				else {
+					$("#content").css("height",innerHei-1+"px");
+				}
+				$("#PullUp").hide();
+				isScroll=true;//分页
+				wpCommon.viewShow();
+			}
+		}
+//		wpwlConsult.load()
+		wpwlConsult.fresh();
+		
+		function scrollHorizon(){			
+			var gallery=document.getElementsByClassName('gallery-inner');
+			var dist=0,init,end;
+			for(var i=0;i<gallery.length;i++){
+				gallery[i].index=i;
+				gallery[i].addEventListener('touchstart',function(e){
+					var e=event||e;
+					init=e.touches[0].pageX;
+				});
+				gallery[i].addEventListener('touchmove',function(e){
+					var e=event||e;
+					end=e.changedTouches[0].pageX;
+					dist+=(end-init)*0.1;
+					if(dist>0){
+						dist=0;
+						return
+					}else if(dist<-(this.offsetWidth-$(this).parent(".gallery").width())){
+						dist=-(this.offsetWidth-$(this).parent(".gallery").width())
+						return
+					}
+					this.style.left=dist+'px';
+					
+				});
+				gallery[i].addEventListener('touchend',function(e){
+					var e=event||e;
+				});
+			}
+		}
+		
+		$(function(){
+			myScroll = new IScroll( "#content",{
+				probeType:2,
+				checkDOMChanges:true,
+		 		click:true,
+		 		disableTouch:false,
+				disablePointer:true
+		 	});
+		 	myScroll.on("scrollEnd", function (e) {
+		        if ((this.y <= this.maxScrollY) && (this.pointY < 14)) {
+		            this.scrollTo(0, this.maxScrollY, 400)
+		        }
+		    });
+		    //分页
+		 	var num=2;
+		 	window.lock=true;
+		 	window.isScroll=true;
+			myScroll.on("scroll", function () {
+		        if (myScroll.maxScrollY - myScroll.y >= 40) {
+		            $("#PullUp").show()
+		        }
+		        $(document).on("touchend", function () {
+		            if (isScroll) {
+		                if (myScroll.maxScrollY - myScroll.y >= 40) {
+		                    if (lock) {
+		                        wpwlConsult.load(num, 4)
+		                    } else {
+		                        $("#PullUp").hide()
+		                    }
+		                    num++;
+		                    isScroll = false;
+		                    return
+		                }
+		            }
+		            if (!lock) {
+		                $("#PullUp").hide()
+		            }
+		        })
+		    });
+			myScroll.on("scrollStart",function(){
+				myScroll.refresh()
+			})
+		})
+		
+				
+		$(function(){
+			$("#back").on("touchstart",function(){
+				localStorage.removeItem('isFromDetails');
+				localStorage.removeItem('productId');
+				localStorage.removeItem('userId');
+				if(localStorage.getItem('isFromDetails')){
+					WPBridge.callMethod('JsInvokeNative','wpH5Back',{},function(){})
+				}else {
+					WPBridge.callMethod("JsInvokeNative","wpH5Back",{},function(){});
+				}
+			})
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />	
+		<title>正品控</title>
+	</head>
+	<style>
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,input,p,img,section{margin:0;padding:0;}
+		a{text-decoration:none;}
+		ul,li{list-style:none;}
+		b,strong{font-weight:normal;}
+		i,em{font-style:normal;}
+		html,body{
+			width:100%;
+			height:100%;
+		}
+		body{font-size:0.3rem}
+		#wrap{
+			width:100%;
+			height:100%;
+			margin:0 auto;
+			overflow-y: auto;
+	-webkit-overflow-scrolling: touch
+		}
+		.top{
+			height:0.88rem;
+			line-height:0.88rem;
+			background:#333;
+			color:white;
+			font-size:0.36rem;
+			text-align:center;
+			position:relative;
+			top:0;
+		}
+
+		.bg-icon{width:0.64rem;height:0.64rem;display: block;background:url("images/back-icon.png");background-size:0.64rem 0.64rem;position:absolute;}
+		
+		#back{
+			left:0.1rem;
+			top:0.12rem;
+		}
+		#discountCont{
+			margin:0 auto;
+		}
+		.rebate,
+		.discount{
+			font-size:0.34rem;
+		    color:#333;
+		    margin:0.4rem 0 0.76rem 0.2rem;
+		}
+		#addressMore{color:#D6A41D;float: left;display: block;text-align: center;width:100%;font-size:0.26rem;margin-top:0.1rem;-webkit-tap-highlight-color:rgba(255,0,0,0);}
+		div.rebate{display: none;}
+		.QRcode{
+			width:6.68rem;
+			height:7.98rem;
+			background:url(images/myRebate.png) no-repeat;
+			background-size:100% 100%;
+			margin:0 auto;
+			position:relative;
+		}
+		.codeImg{
+			display:block;
+			width:3rem;
+			height:3rem;
+			border:4px solid #D6A41D;		
+			position:absolute;
+			top:1.3rem;
+			left:0;
+			right:0;
+			margin:auto;
+		}
+		.codeImg img{width:0.74rem;height:0.74rem;position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;}
+		#codeNumber{position: absolute;top:4.6rem;display: block;font-size:0.3rem;text-align: center;width:100%;}
+		.down{
+			position:absolute;
+			bottom:0.5rem;
+		    left:0;
+		    right:0;
+		    margin:auto;
+		}
+		.value{
+			font-size:0.28rem;
+			color:#666;
+			text-align:center;
+		}
+		.money{
+			color:#D6A41D;
+		}
+		.effectiveData,.address{
+			text-align:center;
+			margin-top:0.1rem;
+		}
+		.effective,.place,.article{
+		 	color:#666;
+		 	font-size:0.28rem;	
+		}
+		.notice{
+			font-size:0.24rem;
+			color:#999;	
+			position:absolute;
+			bottom:0.22rem;
+			width:100%;
+			overflow: hidden;
+		}
+		.stake,.noticeCode{
+			box-sizing:border-box;
+			float:left;
+		}
+		.stake{	    
+			width:10%;
+    		padding-left:0.2rem;
+		}
+		.noticeCode{
+		    width:90%;
+			padding-right:0.2rem;
+		}
+		.loading {
+			width: 100%;
+			position: absolute;
+			height: 100%;
+			display: none;
+			z-index: 99;
+			left: 0;
+			top: .88rem
+		}
+		
+		.loading .middle {
+			width: 100%;
+			position: absolute;
+			height: 6rem;
+			text-align: center;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+		}
+		
+		.middle img {
+			width: 2.1rem;
+			margin: 0 auto;
+			margin-bottom: .3rem;
+			display: block
+		}
+	</style>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<body>
+		<div id="wrap">
+			<div class="top">
+				<i class="bg-icon" id="back"></i>
+				<div></div>
+			</div>
+			<div id="content">
+				<div class="discount">你的"<span id="brand">小钢炮</span>"门店优惠二维码为：</div>
+				<div class="rebate">用户<span id="phoneNumber"></span>通过您的分享购买了产品，您因此获得一笔现金返利，前往门店领取吧！</div>
+				<div class="QRcode">
+					<div class="codeImg"><img src="images/zpk-icon.png"></div>
+					<em id="codeNumber">242533</em>
+					<div class="down">
+						<p class="value"><span>面值</span><strong class="money">20元</strong>,前往门店购买活动产品即可使用</p>
+						<div class="effectiveData">		
+							<div class="effective">活动时间:<span class="article" id="act_time">2017.3.2至2017.4.2</span></div>	 
+						</div>
+						<div class="address">		
+							<div class="place">门店地址:<span class="article" id="act_place">余杭区五常大道</span></div>	 					
+						</div>
+						<a id="addressMore" href="storeAddress.html">点击查看更多门店地址 ></a>
+					</div>
+				</div>
+				<div class="notice">
+					<p class="stake">注：</p>
+					<p class="noticeCode">该二维码为您的专属<span id="type">优惠</span>二维码，使用失效后，请妥善保管</p>
+				</div>
+			</div>
+			<div class="loading">
+				<div class="middle"><img src="images/scan_net.png" />
+					<p>网络异常，点击
+						<a href="javascript:;" id="wpReload">重新加载</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script>
+		$(function(){
+			var keyFlag=false;
+			getUrlRequest().rebateId=8;
+			if(getUrlRequest().couponId){
+				$(".top div").html(localStorage.getItem('couponName'));
+				getKey("getCouponDetail",getUrlRequest().couponId);
+			}else{
+				
+				//返利
+				$('.rebate').show();
+				$(".top div").html('我的返利');
+				$("#type").html('返利');
+				$('.value span').html('前往门店扫码兑现');
+				getKey('getRebateDetail',getUrlRequest().rebateId);
+			}
+
+			function getKey(portUrl,params){
+				$.ajax({
+					url:wpCommon.Url+"/wpwl/getKey",
+					type:'post',
+					success:function(res){
+						key=res.data;
+						getData(portUrl,params);
+					}
+				})
+			}
+	
+			function getData(portUrl,params){
+				WPBridge.callMethod("JsInvokeNative", "wpEncrypt", {
+					key: key,
+					params: [params]
+				}, function(msg) {
+					$.ajax({
+						url: wpCommon.Url + "/wpwl/activityDiscount/"+portUrl,
+	//					url:"JSON/data.json",
+						data: {
+							receiveCouponId: msg.data.result[0],
+							versionId: '27'
+						},
+						type: 'post',
+						timeout: 10000,
+						success: function(res) {
+							if(res.errMsg == "AES加密解密失败") {
+								if(!keyFlag) {
+									getKey(portUrl,params);
+									keyFlag=true;
+								}
+							} else if(res.errMsg == "返利不存在！") {
+								$("#content").hide();
+								$(".loading").show();
+								$(".middle p").html("该活动已失效,去发现新的活动吧").siblings('img').attr('src', "images/scan_failed.png");
+								wpCommon.viewShow();
+							} else {
+								try {
+									var actData = res.data;
+									if(getUrlRequest().couponId){
+										var brandName=localStorage.getItem('couponName');
+										$("#brand").html(brandName);
+										localStorage.removeItem('couponName');
+										var num=actData.couponQrcode;
+										var codeNum=num.substring(0,4)+" "+num.substring(4,8)+" "+num.substring(8,12)+" "+num.substring(12)
+										$("#act_time").html(actData.gmtStart+"至"+actData.gmtEnd);
+										$(".codeImg").css('background', actData.couponQrcodePicUrl);
+										if(actData.preferentialWay=="1"){
+											$("#type").html("折扣");
+											$(".value span").html('折扣');
+											$(".money").html(actData.preferentialDiscount);
+										}else{
+											$(".money").html(actData.preferentialAmount);
+										}
+									}else{
+										$("#phoneNumber").html(actData.mobile);
+										$("#act_time").html(actData.rebateObtainStart+"至"+actData.rebateObtainEnd);
+										$(".codeImg").css('background', actData.rebateQrcodePicUrl);
+										$(".money").html(actData.rebatAmount);
+									}
+									$("#codeNumber").html(codeNum);
+									$("#act_place").html(actData.address[0]);
+									if(actData.address[1]){
+										$("#addressMore").show();
+										localStorage.setItem('storeAddress',JSON.stringify(actData.address))
+									}
+									
+									
+
+									wpCommon.viewShow();
+								} catch(e) {
+									$("#content").hide();
+		          					$(".loading").show().css("height", wholeHei+ "px").find("img").attr("src", "images/error_else.png").siblings("p").html("出错了，请稍后再试");
+									wpCommon.viewShow();
+								}
+	
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							if(jqXHR.status!==''){
+				            	$(".loading").show().find("img").attr("src", "images/error_else.png").siblings("p").html("出错了，请稍后再试");
+				            }else{
+				            	$(".loading").show();
+				            	WPBridge.callMethod("JsInvokeNative", "wpShowToast", {
+									message: "网络异常"
+								}, '');
+				            }
+							$("#content").hide();
+						}
+					})
+				})
+			}
+		})
+		//返回
+		$("#back").on('touchstart',function(){
+			localStorage.removeItem('storeAddress');
+			WPBridge.callMethod('JsInvokeNative','wpH5Back',{},'');
+		})
+	</script>
+</html>

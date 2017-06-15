@@ -1,0 +1,376 @@
+#box{
+	margin-top: 0.88rem;
+}
+#box .act_title{
+	width: 100%;
+	height: 0.9rem;
+	position: fixed;
+	top: .88rem;
+	z-index: 100;
+}
+#box .act_title div{
+	box-sizing: border-box;
+	text-align: center;
+	float: left;
+	width: 50%;
+	height: 0.9rem;
+	line-height: 0.9rem;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	color: #333;
+	background: #fff;
+}
+#box .act_title div.current{
+	color: #fff;
+	background: #d6a41d;
+	border-top: 1px solid #d6a41d;
+	border-bottom: 1px solid #d6a41d;
+}
+/*-----------------------返利内容  unactivity：失效返利---------------------------*/
+#discountContent,#dis_act_content,#un_act_content,#undiscountContent{
+	margin:0 auto;
+	display: none;
+}
+#dis_act_content.current,#discountContent.current,#un_act_content.current,#undiscountContent.current{
+	display: block;
+}
+#dis_act_content,#discountContent{
+	margin-top: 1.98rem;
+}
+#un_act_content,#undiscountContent{
+	margin-top: 1.1rem;
+}
+
+.discountBox{
+	margin:0 auto;
+	width:6.7rem;
+	height:2.1rem;
+	background:url(../images/act_rebate.png) repeat-x;
+	margin-bottom:0.2rem;
+	background-size:auto 100%;
+	position: relative;
+	padding-top: 0.3rem;
+	z-index: 10;
+}
+.cont{
+	width:6.7rem;
+	height:1.64rem;
+}
+.left{
+	height:1.64rem;
+	line-height:1.64rem;
+	width:29%;
+	float:left;
+	color:#FB4746;
+	text-align:center;
+	box-sizing: border-box;
+	border-right: 1px dashed #ccc;
+}
+.num{
+	font-size:0.72rem;
+	font-weight:bold;
+}
+.sign{
+	font-size:0.3rem;	
+}
+.introduce{
+	width:70%;
+    float:left;
+    padding-left:0.4rem;
+    box-sizing:border-box;
+}
+.intro,.data{
+	margin-top:0.1rem;
+	font-size:0.24rem;
+	color:#666;
+}
+.intro{
+	height: 0.64rem;
+	line-height: 0.32rem;
+}
+.title{
+	color:#333;
+}
+.status{
+	width:100%;
+	height:0.32rem;
+	line-height:0.32rem;
+	font-size:0.2rem;
+	color:#666;
+	padding-left:0.1rem;
+	position: absolute;
+	bottom: 0px;
+}
+.look{
+	margin-top:0.2rem;
+	font-size:0.24rem;
+	text-align:center;
+	color:#666;
+	padding-bottom: 0.2rem;
+}
+.more{
+	color:#D6A41D;
+}
+.discountBox.unactivity{
+	background:url(../images/out_rebate.png) repeat-x;
+	background-size:auto 100%;
+}
+.unactivity .left{
+	color:#999;
+}
+.unactivity .intro,.unactivity .data{
+	color:#666;
+}
+/*活动列表 activity:活动中 act_cancel已取消蓝 act_timeout已过期 灰*/
+.activity_list{
+	width:95%;
+	height: 3.2rem;
+	box-sizing: border-box;
+	border-radius: 3px;
+	margin: 0 auto;
+	margin-bottom: 0.2rem;
+	position: relative;
+	z-index: 10;
+}
+.activity_list.activity{
+	border: 1px solid #e9e1a0;
+	background: #fef5cc;
+}
+.activity_list.act_cancel{
+	background: #dbf6ff;
+	border: 1px solid #b8e6f5;
+}
+.activity_list.act_timeout{
+	background: #ebebeb;
+	border: 1px solid #cccccc;
+}
+.activity_list_title{
+	text-align: center;
+	height: 0.65rem;
+	line-height: 0.64rem;
+}
+.activity_list_title span{
+	color: #333;
+}
+.activity .activity_list_title{
+	border-bottom: 1px dashed #d5a31e;
+	color: #d5a31c;
+}
+.act_cancel .activity_list_title{
+	border-bottom: 1px dashed #7dc3dc;
+	color: #7fc2dc;
+}
+.act_timeout .activity_list_title{
+	border-bottom: 1px dashed #ccc;
+	color: #333;
+}
+.activity_content{
+	height: 2.53rem;
+}
+.activity_content_left,.activity_content_right{
+	float: left;
+}
+.activity_content_left{
+	width:2.08rem;
+	height: 100%;
+	position: relative;
+}
+.activity_content_left img{
+	width: 1.9rem;
+	height: 1.9rem;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -0.95rem;
+	margin-top: -0.95rem;
+}
+.activity_content_right{
+	height: 100%;
+	padding-left: 0.08rem;
+	font-size: 0.26rem;
+	position: relative;
+	z-index: 10;
+}
+
+.activity .activity_content_right{
+	color: #d6a51c;
+}
+.act_cancel .activity_content_right{
+	color: #78ceef;
+}
+.act_timeout .activity_content_right{
+	color: #676767;
+}
+.activity_content_right .activity_info{
+	line-height: 0.45rem;	
+	height: 0.9rem;
+	width: 4.70rem;
+	margin-top: 0.3rem;
+}
+.activity_content_right .activity_time{
+	margin-top: 0.1rem;
+	line-height: 0.45rem;
+	height: 0.45rem;
+	width: 4.70rem;
+}
+.activity_content_right .activity_status{
+	margin-top: 0.07rem;
+	width: 4.74rem;
+	position: relative;
+}
+.activity_content_right .activity_status div{
+	position: absolute;
+	right: 0;
+	width:1.3rem;
+	height: 0.48rem;
+	border-radius: 0.24rem;
+	text-align: center;
+	line-height: 0.48rem;
+	color: #fff;
+}
+.activity .activity_content_right .activity_status div{
+	background: #f6ca2b;
+}
+.act_cancel .activity_content_right .activity_status div{
+	background: #7adcff;
+}
+.act_timeout .activity_content_right .act_times{
+	color: #999;
+}
+.act_timeout .activity_content_right .activity_status div{
+	background: #ccc;
+}
+/*======================================*/
+@media screen and (min-width:767px){
+	#wrap{width:10rem;margin: 0 auto;height:100%;border:1px solid #e6e6e6;display: none;}
+	#wrap .info_card{width:9rem}
+	.top{width:10rem;margin: 0 auto;}
+}
+@media screen and (max-width:767px){
+	#wrap{width: 100%;display:none;}
+	.top{width:100%;}
+}
+body{
+	font-size: 0.3rem
+}
+.top {
+	width: 100%;
+	height: .88rem;
+	background: #333;
+	color: white;
+	font-size: .35rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9
+}
+#back {
+	background-position: 0rem 0rem;
+	left: .1rem;
+	bottom: .12rem
+}
+#wrap{
+	margin-top: 0.88rem;
+}
+#share {
+	background-position: -0.64rem 0rem;
+	right: .1rem;
+	bottom: .12rem
+}
+.bg-icon{
+	width:0.64rem;
+	height:0.64rem;
+	display:inline-block;
+	background:url(../images/message-sprite-new.png) no-repeat;
+	background-size:4.48rem 0.64rem;
+	position: absolute;
+}
+.top div{
+	width: 100%;
+	height: 100%;
+	line-height: 0.88rem;
+	text-align: center;
+}
+.loading {
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	z-index: 99;
+	left: 0;
+	top: 0.88rem;
+}
+.loading .middle {
+	width: 100%;
+	position: absolute;
+	height: 6rem;
+	text-align: center;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto
+}
+.middle img {
+	width: 2.1rem;
+	margin: 0 auto;
+	margin-bottom: 0.3rem;
+	display: block
+}
+.loadEffect{ 
+	width: 100px; 
+	height: 100px; 
+	position: absolute; 
+	margin:auto;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0.88rem;
+}
+.loadEffect p{ 
+	position: absolute; 
+	margin:auto;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	width:0.56rem;
+	height:0.56rem;
+	border:3px solid #f9c804;
+	-webkit-animation: load 1s ease infinite;
+}
+@-webkit-keyframes load{
+    0%{
+        transform: rotate(-45deg);
+    }
+    100%{
+        transform: rotate(315deg);
+    }
+}
+.loadEffect span{
+	color:0.26rem;
+	color:#666;
+	width:100%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	bottom:0
+}
+.unshow {
+	display: none;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+

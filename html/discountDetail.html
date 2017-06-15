@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />	
+		<title>正品控</title>
+	</head>
+	<style>
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,input,p,img,section{margin:0;padding:0;}
+		a{text-decoration:none;}
+		ul,li{list-style:none;}
+		b,strong{font-weight:normal;}
+		i,em{font-style:normal;}
+		html,body{
+			width:100%;
+			height:100%;
+		}
+		#box{
+			width:100%;
+			height:100%;
+			margin:0 auto;
+			overflow-y: auto;
+	-webkit-overflow-scrolling: touch
+		}
+		.top{
+			height:0.88rem;
+			line-height:0.88rem;
+			background:#333;
+			color:white;
+			font-size:0.36rem;
+			text-align:center;
+		}
+
+		.bgIcon{
+			width:0.64rem;
+			height:0.64rem;
+			display:block;
+			background:url(images/message-sprite.png) no-repeat;
+			background-size:3.84rem 0.64rem;
+		}
+		.back{
+			background-position:0rem 0rem;
+			position:absolute;
+			left:0.1rem;
+			top:0.12rem;
+			-webkit-tap-highlight-color:rgba(255,0,0,0);
+		}
+		#discountCont{
+			margin:0 auto;
+		}
+		.rebate,
+		.discount{
+			font-size:0.34rem;
+		    color:#333;
+		    margin:0.4rem 0 0.76rem 0.2rem;
+		}
+		div.rebate{display: none;}
+		.QRcode{
+			width:6.68rem;
+			height:7.98rem;
+			background:url(images/myRebate_03.png) no-repeat;
+			background-size:100% 100%;
+			margin:0 auto;
+			position:relative;
+		}
+		.codeImg{
+			display:block;
+			width:3rem;
+			height:3rem;
+			border:4px solid #D6A41D;		
+			position:absolute;
+			top:1.3rem;
+			left:0;
+			right:0;
+			margin:auto;
+		}
+		.codeImg img{width:0.74rem;height:0.74rem;position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;}
+		#codeNumber{position: absolute;top:4.6rem;display: block;font-size:0.3rem;text-align: center;width:100%;}
+		.down{
+			position:absolute;
+			bottom:0.5rem;
+		    left:0;
+		    right:0;
+		    margin:auto;
+		}
+		.value{
+			font-size:0.28rem;
+			color:#666;
+			text-align:center;
+		}
+		.money{
+			color:#D6A41D;
+		}
+		.effectiveData,.address{
+			text-align:center;
+			margin-top:0.2rem;
+		}
+		.effective,.place,.article{
+		 	color:#666;
+		 	font-size:0.28rem;	
+		}
+		.notice{
+			font-size:0.24rem;
+			color:#999;	
+			/*position:absolute;*/
+			/*bottom:0.22rem;*/
+			width:100%;
+			margin-top:1.7rem;
+			/*margin-bottom:0.5rem;*/
+			overflow: hidden;
+		}
+		.stake,.noticeCode{
+			box-sizing:border-box;
+			float:left;
+		}
+		.stake{	    
+			width:10%;
+    		padding-left:0.2rem;
+		}
+		.noticeCode{
+		    width:90%;
+			padding-right:0.2rem;
+		}
+		.loading {
+			width: 100%;
+			position: absolute;
+			height: 100%;
+			display: none;
+			z-index: 99;
+			left: 0;
+			top: .88rem
+		}
+		
+		.loading .middle {
+			width: 100%;
+			position: absolute;
+			height: 6rem;
+			text-align: center;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto
+		}
+		
+		.middle img {
+			width: 2.1rem;
+			margin: 0 auto;
+			margin-bottom: .3rem;
+			display: block
+		}
+	</style>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<body>
+		<div id="box">
+			<div class="top">
+				<i class="bgIcon back"></i>
+				<div></div>
+			</div>
+			<div id="content">
+				<div class="discount">你的"<span id="brand">小钢炮</span>"门店优惠二维码为：</div>
+				<div class="rebate">用户<span id="phoneNumber"></span>通过您的分享购买了产品，您因此获得一笔现金返利，前往门店领取吧！</div>
+				<div class="QRcode">
+					<div class="codeImg"><img src="images/zpk-icon.png"></div>
+					<em id="codeNumber">242533</em>
+					<div class="down">
+						<p class="value">面值<strong class="money">20元</strong>,<span>前往门店购买活动产品即可使用</span></p>
+						<div class="effectiveData">		
+							<div class="effective">活动时间:<span class="article" id="act_time">2017.3.2至2017.4.2</span></div>	 
+						</div>
+						<div class="address">		
+							<div class="place">门店地址:<span class="article" id="act_place">余杭区五常大道</span></div>	 					
+						</div>
+					</div>
+				</div>
+				<div class="notice">
+					<p class="stake">注：</p>
+					<p class="noticeCode">该二维码为您的专属<span id="type">优惠</span>二维码，使用失效后，请妥善保管</p>
+				</div>
+			</div>
+			<div class="loading">
+				<div class="middle"><img src="images/scan_net.png" />
+					<p>网络异常，点击
+						<a href="javascript:;" id="wpReload">重新加载</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script>
+		var couponName=localStorage.getItem("couponName")
+		$(".top div").html(couponName);
+		$(function(){
+			if(!getUrlRequest().discount){
+//				$(".top div").;
+				getKey()
+			}else{
+				$('.rebate').show();
+				$(".top div").html('我的返利');
+				$("#type").html('返利');
+				$('.value span').html('前往门店扫码兑现');
+				getKey()
+			}
+		})
+		
+		$(".back").on('touchstart',function(){
+			WPBridge.callMethod('JsInvokeNative','wpH5Back',{},'');
+		})
+		
+		function getKey(portUrl,params){
+			$.ajax({
+				url:wpCommon.Url+"/wpwl/getKey",
+				type:'post',
+				success:function(res){
+					key=res.data;
+					getData(portUrl,params);
+				}
+			})
+		}
+
+		function getData(portUrl,params){
+			var msgId = getUrlRequest().activityPushId;
+			WPBridge.callMethod("JsInvokeNative", "wpEncrypt", {
+				key: key,
+				params: [params]
+			}, function(msg) {
+				$.ajax({
+					url: wpCommon.Url + "/wpwl/activityPush/getById"+porturl,
+//					url:"JSON/data.json",
+					data: {
+						id: msg.data.result[0],
+						versionId: '27'
+					},
+					type: 'post',
+					timeout: 10000,
+					success: function(res) {
+						if(res.errMsg == "AES加密解密失败") {
+							if(!flag) {
+								getKey(true);
+							}
+						} else if(res.success == false) {
+							$("#content").hide();
+							$(".loading").show();
+							$(".middle img").attr('src', "images/notFound.png");
+							$(".middle p").html("活动异常<br />关联产品或活动已下架");
+							$("#share").hide();
+							wpCommon.viewShow();
+						} else {
+							try {
+								window.actData = res.data.activityTime;
+								//$(".loading").style.display="none";
+								$("#brand").html(actData.activityTime);
+								$("#codeNumber").html(actData.codeNumber)
+								$("#act_place").html(actData.activityAddress);
+								$(".codeImg").css('background', actData.activityPicUrl);
+								$(".money").html(actData.activityContent);
+								if(actData.brandName) {
+									$('.top div').html(actData.brandName);
+								} else if(actData.productName) {
+									$('.top div').html(actData.productName);
+								}
+								wpCommon.viewShow();
+							} catch(e) {
+								$("#content").hide();
+	          					$(".loading").show().css("height", wholeHei+ "px").find("img").attr("src", "images/error_else.png").siblings("p").html("出错了，请稍后再试");
+								wpCommon.viewShow()
+							}
+
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						if(textStatus == "timeout") {
+							
+						} else {
+							$(".middle img").attr('src', "images/error_else.png");
+							$(".middle p").html("出错了，请稍后再试");
+						}
+						$(".loading").show();
+						$("#content").hide();
+					}
+				})
+			})
+		}
+
+	</script>
+</html>

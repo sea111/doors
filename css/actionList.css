@@ -1,0 +1,137 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,select,img,section{margin:0;padding:0;}
+a{text-decoration:none;}
+ul,li{list-style:none;}
+b,strong{font-weight:normal;}
+i,em{font-style:normal;}
+html,body{
+	width:100%;
+	height:100%;
+/*	overflow:hidden;*/
+}
+#box{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+}
+.top{
+	width:100%;
+	height:0.88rem;
+	background:#333;
+	color:white;
+	font-size:0.36rem;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:3;
+}
+.top div{
+	width:100%;
+	height:0.88rem;
+	line-height:0.88rem;
+	text-align:center;
+}
+.bg-icon{
+	width:0.64rem;
+	height:0.64rem;
+	display:block;
+	background:url(../images/back-icon.png) no-repeat;
+	background-size:100% 100%;
+	position:absolute;
+	top:0.1rem;
+	left:0.1rem;
+	-webkit-tap-highlight-color:rgba(255,0,0,0);
+}
+#listContent{
+	/*margin-top:0.88rem;*/
+	position:relative;
+	top:0.88rem;
+}
+#listConts{
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	-webkit-tap-highlight-color:rgba(255,0,0,0);
+}
+#listCont{
+	margin:0.2rem auto;
+	width:7.10rem;
+	border:1px solid #fbe799;
+	background:#FEF6cc;
+	border-radius:4px;
+	cursor:pointer;
+}
+.cont{
+	height:0.64rem;
+	line-height:0.64rem;
+	border-bottom:1px dashed #d6a41d;
+	text-align:center;
+}
+.cont .title{
+	font-size:0.32rem;
+	color:#333;
+}
+.listBox{
+	height:2.14rem;
+}
+.imgLeft{
+	width:1.9rem;
+	height:1.9rem;
+	border-radius:4px;
+	float:left;
+	margin-left:0.1rem;
+	margin-top:0.1rem;
+	font-size:1.4rem;
+	text-align:center;
+	vertical-align:middle;
+	background:#fff;
+}
+.imgLeft img{
+	display:inline-block;
+	max-width:100%;
+	max-height:100%;
+	vertical-align:middle;	
+}
+.character{
+	float:left;
+	width:4.8rem;
+	margin-left:0.2rem;
+	margin-top:0.4rem;
+}
+.actShare,.actTime,.time{
+	font-size:0.26rem;
+	color:#D6A41D;
+}
+.actTime{
+	margin-top:0.3rem;
+}
+/*--------------------loading加载------------------------*/
+.loading{
+	width:100%;
+	position:absolute;
+	height:90%;
+	display:none;
+	z-index:99;
+	left:0;
+	top:0.88rem;
+	font-size:0.3rem;
+}
+.loading .middle{
+	width:100%;
+	position:absolute;
+	height:6rem;
+	text-align:center;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+}
+.middle img{
+	width:2.1rem;
+	margin:0 auto;
+	margin-bottom:0.3rem;
+	display:block;
+}
+#wpReload{
+	color:#0AA1F8;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/222.css" />
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<body>
+		<div id="box">
+			<div class="act_title">
+				<div class="current" content="dis_act_content">我的活动</div>
+				<div content="discountContent">我的返利</div>
+			</div>
+			<!--当前活动-->
+			<div id="dis_act_content" class="current dis_content">
+				
+			</div>
+			<!--当前返利-->
+			<div id="discountContent" class="dis_content">
+				
+			</div>
+			<!--失效返利-->
+			<div id="undiscountContent" class="dis_content">
+				
+			</div>
+			<div class="look unshow"><span class="more" content="undiscountContent">查看更多</span>已使用/已过期返利券</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/laytpl.js" ></script>
+	<script type="text/html" id="rebate_activity">
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].status==1){ }}
+				<div class="activity_list activity" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }} >
+			{{# }else if(d[i].status==2){ }}
+				<div class="activity_list act_cancel" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }}>
+			{{# }else{ }}
+				<div class="activity_list act_timeout" aid={{ d[i].id }} pid={{ d[i].posId }} status={{ d[i].status }}>
+			{{# } }}
+				<div class="activity_list_title"><span>{{ d[i].heading }}</span></div>
+				<div class="activity_content">
+					<div class="activity_content_left">
+						{{# if(d[i].status==1){ }}
+							<img src="{{ d[i].picUrl}}" errType="now" alt="" />
+						{{# }else if(d[i].status==2){ }}
+							<img src="{{ d[i].picUrl}}" errType="cancel" alt="" />
+						{{# }else{ }}
+							<img src="{{ d[i].picUrl}}" errType="timeout" alt="" />
+						{{# } }}
+						
+					</div>
+					<div class="activity_content_right">
+						<p class="activity_info">
+							<span>{{ d[i].summary }}</span>
+						</p>
+						<p class="activity_time">
+							活动时间：<span>{{d[i].gmtStart}}-{{d[i].gmtEnd}}</span>
+						</p>
+						<div class="activity_status">
+							{{# if(d[i].status==1){ }}
+								<div>进行中</div>
+							{{# }else if(d[i].status==2){ }}
+								<div>已取消</div>
+							{{# }else{ }}
+								<div>已过期</div>
+							{{# } }}
+						</div>
+					</div>
+				</div>
+			</div>
+		{{# } }}
+	</script>
+	<script>
+		$.ajax({
+				type:"get",
+				url:"JSON/11.json",
+				async:true,
+				timeout:10000,
+				success:function(datas){
+//					alert(key)						
+				var listContHtml=$("#rebate_activity").html();
+				var dt=datas.data;
+				console.log(dt)
+				console.log(dt.activityList);
+				var bandName=dt.brandName;
+				console.log(bandName)
+//				console.log(dt.brandName)
+				//模板引擎
+				laytpl(listContHtml).render(dt.activityList,function(html){
+					$("#dis_act_content").append(html);
+					
+				})
+				$(".top div").html(bandName+"活动列表"	)		
+				}
+			})
+	</script>
+</html>

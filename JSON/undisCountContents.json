@@ -1,0 +1,74 @@
+{
+	"data": {
+	    "coupons":[
+		  	{
+				"receiveCouponId": "11",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-3-24",
+				"activityEndTime": "2017-4-17",
+				"couponsType": "0",
+				"preferentialAmount": "30",
+				"preferentialDiscount": "7",
+				"preferentialWay": "1",
+				"consume": "1"
+		    },
+		    {
+				"receiveCouponId": "12",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-4-10",
+				"activityEndTime": "2017-4-17",
+				"couponsType": "0",
+				"preferentialAmount": "20",
+				"preferentialDiscount": "6",
+				"preferentialWay": "0",
+				"consume": "9"
+		    },
+		    {
+				"couponId": "13",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-4-12",
+				"activityEndTime": "2017-4-15",
+				"preferentialAmount": "30",
+				"preferentialDiscount": "8",
+				"preferentialWay": "1",				
+				"couponsType": "0",
+				"consume": "1"
+		    },
+		    {
+				"receiveCouponId": "14",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-4-09",
+				"activityEndTime": "2017-4-11",
+				"preferentialAmount": "10",
+				"preferentialDiscount": "3",
+				"preferentialWay": "0",
+				"couponsType": "0",
+				"consume": "9"
+		    },
+		    {
+				"receiveCouponId": "15",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-3-29",
+				"activityEndTime": "2017-4-03",
+				"preferentialAmount": "50",
+				"preferentialDiscount": "5",
+				"preferentialWay": "0",
+				"couponsType": "0",
+				"consume": "1"
+		    },
+		    {
+				"receiveCouponId": "16",
+				"couponName": "小钢炮优惠券",
+				"activityStartTime": "2017-3-11",
+				"activityEndTime": "2017-3-22",
+				"preferentialAmount": "30",
+				"preferentialDiscount": "3",
+				"preferentialWay": "1",
+				"couponsType": "0",
+				"consume": "9"
+		    }   
+	    ],
+		"total": "12"
+	   },
+	   "success": true
+}

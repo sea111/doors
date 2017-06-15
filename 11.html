@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/11.css" />
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<body>
+		<div id="box">
+			<div class="top">
+				<i class="bg-icon" id="back"></i>
+				<div></div>
+			</div>
+			<div id="listContent">
+				<div id="listConts">
+				</div>			
+			</div>
+			<div class="loading">
+				<div class="middle"><img src="images/scan_net.png" />
+					<p>网络异常，点击
+						<a href="javascript:;" id="wpReload">重新加载</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/laytpl.js" ></script>
+	<script type="text/html" id="listContHtml">
+		{{# for(var i=0;i<d.length;i++){ }}
+			<div id="listCont" actionId="{{d[i].id}}">
+				<div class="cont">
+					<div class="title">{{d[i].heading}}</div>
+				</div>
+				<dl class="listBox">
+					<dt class="imgLeft"><img src="{{d[i].picUrl}}" /></dt>
+					<dd class="character">
+						<p class="actShare">{{d[i].summary}}</p>
+						<p class="actTime">活动时间：<span class="time">{{d[i].gmtStart}}</span>-<span class="time">{{d[i].gmtEnd}}</span></p>
+					</dd>
+				</dl>
+			</div>
+		{{# } }}
+	</script>
+	<script>
+		
+		$.ajax({
+				type:"get",
+				url:"JSON/11.json",
+				async:true,
+				timeout:10000,
+				success:function(datas){
+					if(success=false){
+						$("#listContent").hide();
+						$(".loading").show();
+						$(".middle img").attr('src',"images/error_else.png");
+						$(".middle p").html("出错了，请稍后再试");
+						$(".top div").html("异常页面");
+					}else{
+						try{
+							if(success=true){					
+								var listContHtml=$("#listContHtml").html();
+								var dt=datas.data;
+								console.log(dt)
+								//var data=dt.activityList;
+								console.log(dt.activityList)
+								var bandName=dt.brandName;
+								//console.log(bandName)
+								for(var i=0;i<dt.activityList.length;i++){
+									dt.activityList[i].gmtStart=dt.activityList[i].gmtStart.replace(/-/g,'.');
+									dt.activityList[i].gmtEnd=dt.activityList[i].gmtEnd.replace(/-/g,'.');
+								}
+								//模板引擎
+								laytpl(listContHtml).render(dt.activityList,function(html){
+									$("#listConts").append(html);
+									
+								})
+								
+								$(".top div").html(bandName+"活动列表"	)	
+							}
+						}catch(e){
+							$("#listContent").hide();
+							$(".loading").show();
+							$(".middle img").attr('src',"images/error_else.png");
+							$(".middle p").html("出错了，请稍后再试");
+							$(".top div").html("异常页面");
+						}
+					}
+		
+					
+				}
+			})
+		/*$("#listContent").on("click","#listConts #listCont",function(){
+			console.log($(this))
+			window.location.href="222.html"
+		})*/
+		$("body").on("click","#listCont",function(){
+			window.location.href="222.html"
+		})
+	</script>
+</html>

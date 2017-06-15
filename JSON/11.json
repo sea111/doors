@@ -1,0 +1,26 @@
+{
+"data":
+{
+	"activityList":
+		[
+			{
+				"gmtEnd":"2017-4-18",
+				"gmtStart":"2017-4-12",
+				"heading":"返利活动",
+				"id":"11",
+				"picUrl":"http://image.wpwl.org:80/uploadfile/3/20160924/new/1474678445585-3c9fba5d87c54df8bcce6e3083184084.jpg",
+				"summary":"小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。"
+			},
+			{
+				"gmtEnd":"2017-4-18",
+				"gmtStart":"2017-4-12",
+				"heading":"返利活动",
+				"id":"11",
+				"picUrl":"http://image.wpwl.org:80/uploadfile/3/20160924/new/1474678445585-3c9fba5d87c54df8bcce6e3083184084.jpg",
+				"summary":"小钢炮冲击钻，先退出返利活动！即日起分享活动页面即可参加。"
+			}
+	],
+	"brandName":"SANFER 帅丰"
+	},
+	"success":true
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--{{# if(d[i].consume==1){ }}
+					<div class="status">该优惠券已消费</div>
+				{{# }else if(d[i].consume==9){ }}
+					<div class="status">该优惠券已过期</div>
+				{{# }else{ }} 
+					<div class="status">还有<span class="number"></span>过期</div>
+				{{# } }}-->
+				
+				
+				
+				<!--	/*//后退
+	$('#back').on('click',function(){
+		if($('.look:visible').length){
+			alert($('.look:visible').length)
+			//调用app  
+			WPBridge.callMethod('JsInvokeNative','wpH5Back',{},'');
+		}else{
+			alert(1122)
+			$("#discountContent").addClass('current');
+			$("#undiscountContent").removeClass('current');
+			$(".look").show();
+			changeContent($('.current'));
+			$(window).scrollTop(0);
+		}
+	})*/	-->
+	
+	
+	<!--	/*$('#back').on('click',function(){
+		if($('#undiscountContent:visible').length){
+			$('.dis_content').each(function(){
+				var $t=$(this);		
+				if($t.hasClass('current')){					
+					var id=$t.attr('id');
+					alert(id)
+					$('.top div').html('优惠券')
+					changeContent($(".current"));
+					alert(changeContent($t))
+					return false; 
+				}
+			})
+		}else{
+			alert(2)
+			//调用app
+			WPBridge.callMethod('JsInvokeNative','wpH5Back',{},'');
+		}
+	})*/-->
+	</body>
+</html>

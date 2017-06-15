@@ -1,0 +1,219 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,select,img,section{margin:0;padding:0;}
+a{text-decoration:none;}
+ul,li{list-style:none;}
+b,strong{font-weight:normal;}
+i,em{font-style:normal;}
+html,body{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+#box{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+}
+.top{
+	width:100%;
+	height:0.88rem;
+	line-height:0.88rem;
+	background:#333;
+	color:white;
+	font-size:0.35rem;
+	text-align:center;
+	position:fixed;
+	top:0;
+	z-index:3;
+}
+.bgIcon{
+	width:0.64rem;
+	height:0.64rem;
+	display:block;
+	background:url(../images/message-sprite.png) no-repeat;
+	background-size:3.84rem 0.64rem;
+}
+.back{
+	background-position:0rem 0rem;
+	position:absolute;
+	left:0.1rem;
+	top:0.1rem;
+	-webkit-tap-highlight-color:rgba(255,0,0,0);
+}
+/*-----------------------优惠券内容---------------------------*/
+#discountContent{
+	margin:0.88rem auto;
+	overflow:hidden;
+}
+.discountBox{
+	margin:0 auto;
+	width:6.7rem;
+	height:2.20rem;
+	background:url(../images/discount_03.png) repeat-x;
+	margin-top:0.2rem;
+	background-size:auto 100%;
+}
+.disCont{
+	width:100%;
+	margin:0 auto;
+}
+.cont{
+	width:6.7rem;
+	height:1.88rem;
+	display:flex;
+}
+.left{
+	height:1.88rem;
+	line-height:1.88rem;
+	width:29%;
+	float:left;
+	color:#FB4746;
+	text-align:center;
+}
+.num{
+	font-size:0.72rem;
+	font-weight:bold;
+}
+.sign{
+	font-size:0.3rem;	
+}
+.line{
+	height:1.42rem;
+	line-height:1.42rem;
+	text-align:center;
+	float:left;
+	border-right:1px dashed #ccc;	
+	margin-top:0.35rem;
+}
+.introduce{
+	/*float:left;
+	width:4.6rem;
+	margin-left:0.4rem;
+	margin-top:0.4rem;*/
+	width:70%;
+    float:left;
+    padding-left:0.4rem;
+    box-sizing:border-box;
+}
+.intro,.datas{
+	/*margin-top:0.1rem;*/
+	margin-top:0.2rem;
+	font-size:0.24rem;
+	color:#666;
+}
+.time{
+	color:#666;
+}
+.intro{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.title{
+	font-size:0.30rem;
+	color:#333;
+	/*padding-top:8%;*/
+	margin-top:0.4rem;
+}
+.status{
+	width:7.2rem;
+	height:0.32rem;
+	line-height:0.32rem;
+	font-size:0.2rem;
+	color:#666;
+	margin-left:0.1rem;
+}
+.look{
+	margin-top:0.2rem;
+	font-size:0.24rem;
+	text-align:center;
+	color:#666;
+}
+.more{
+	color:#D6A41D;
+}
+/*-------------------失效优惠券内容------------------*/
+#outDiscountContent{
+	margin:0.88rem auto;
+	overflow:hidden;
+	display:none;
+}
+.outDiscountBox{
+	margin:0 auto;
+	width:6.7rem;
+	height:2.20rem;
+	background:url(../images/outDiscount2_03.png) repeat-x;
+	margin-top:0.2rem;
+	background-size:auto 100%;
+}
+.outcont{
+	width:6.7rem;
+	height:1.88rem;
+	display:flex;
+}
+.outleft{
+	height:1.88rem;
+	line-height:1.88rem;
+	width:29%;
+	float:left;
+	color:#999;
+	text-align:center;
+}
+.outintroduce{
+	width:70%;
+    float:left;
+    padding-left:0.4rem;
+    box-sizing:border-box;
+}
+.outIntro,.outData{
+	margin-top:0.2rem;
+	font-size:0.24rem;
+	color:#666;
+}
+/*--------------------loading------------------------*/
+.loading{
+	width:100%;
+	position:absolute;
+	height:100%;
+	display:none;
+	z-index:99;
+	left:0;
+	top:0.88rem;
+	font-size:0.3rem;
+}
+.loading .middle{
+	width:100%;
+	position:absolute;
+	height:6rem;
+	text-align:center;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+}
+.middle img{
+	width:2.1rem;
+	margin:0 auto;
+	margin-bottom:0.3rem;
+	display:block;
+}
+#wpReload{
+	color:#0AA1F8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

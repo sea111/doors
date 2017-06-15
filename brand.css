@@ -1,0 +1,219 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden
+}
+
+#box {
+	width: 100%;
+	height: 100%
+}
+
+#header {
+	position: fixed;
+	width: 100%;
+	height: .88rem;
+	background: #333;
+	top: 0rem;
+	left: 0;
+	z-index: 4
+}
+
+.top {
+	height: .88rem;
+	position: relative
+}
+
+.goback {
+	display: block;
+	background: url(../images/failed-sprite.png) no-repeat;
+	width: .64rem;
+	height: .64rem;
+	background-size: 1.28rem .64rem;
+	background-position: 0rem 0rem;
+	position: absolute;
+	left: .3rem;
+	top: .1rem;
+	-webkit-tap-highlight-color: rgba(255, 0, 0, 0)
+}
+
+p.all {
+	height: .88rem;
+	line-height: .88rem;
+	font-size: .36rem;
+	color: #fff;
+	text-align: center
+}
+
+/*.people {
+	background: url(../img/icon_personal.png) no-repeat;
+	width: .38rem;
+	height: .4rem;
+	position: absolute;
+	right: .3rem;
+	top: .24rem;
+	background-size: .4rem .4rem
+}*/
+
+#content {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin-top: 1rem
+}
+
+#content .content-box {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 .2rem
+}
+
+#content .content-box .contents {
+	margin: 0 auto;
+	margin-bottom: .2rem;
+	border-radius: .1rem;
+	background-color: #fff;
+	box-shadow: 0 0 18px #ccc;
+}
+
+#content .content-box .contents .head {
+	line-height: .88rem;
+	height: .88rem
+}
+
+.list-good{
+	padding-bottom:0.1rem;
+}
+
+.imgLeft {
+	width: .38rem;
+	height: .38rem;
+	margin-right: .2rem;
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: -0.05rem
+}
+
+p.expensive {
+	font-size: .3rem;
+	line-height: .88rem;
+	text-align: center
+}
+
+.cont {
+	border-top: 1px solid #e6e6e6;
+	height: 1.98rem
+}
+
+.dl {
+	padding: 0 .3rem;
+	width: 6.5rem;
+	height: 1.96rem
+}
+
+.dt {
+	margin-right: .34rem;
+	margin-top: .18rem;
+	float: left;
+	width: 1.6rem;
+	height: 1.6rem;
+	border: 1px solid #e0e0e0;
+	border-radius: .04rem
+}
+
+.dt .brandImg {
+	display: block;
+	width: 1.6rem;
+	height: 1.6rem
+}
+
+.dd {
+	float: left;
+	width: 4.44rem;
+	position: relative
+}
+
+.dds {
+	float: left
+}
+
+.brand {
+	margin-top: .24rem;
+	font-size: .32rem;
+	color: #333
+}
+
+.num {
+	font-size: .24rem;
+	margin-top: .20rem;
+	color: #666
+}
+
+.starTime {
+	font-size: .24rem;
+	margin-top: .20rem;
+	color: #666
+}
+
+.right {
+	margin-top: .8rem;
+	position: absolute;
+	right: -0.1rem;
+	display: block;
+	background: url(../images/pic.png) no-repeat;
+	width: .4rem;
+	height: .4rem;
+	background-position: -3.2rem 0;
+	background-size: 3.6rem .4rem;
+	float: right
+}
+
+.new{
+	position:absolute;
+	right:-0.2rem;
+	top:0.2rem;
+	color:#000;
+	font-weight:bold;
+	background:#fdd100;
+	width:1rem;
+	height:0.4rem;
+	line-height:0.4rem;
+	text-align:center;
+	border-radius:12px;
+	font-size:0.26rem;
+}
+
+.loading {
+	width: 100%;
+	position: absolute;
+	height: 100%;
+	display: none;
+	z-index: 99;
+	left: 0;
+	top: .88rem;
+	font-size: .3rem
+}
+
+.loading .middle {
+	width: 100%;
+	position: absolute;
+	height: 6rem;
+	text-align: center;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto
+}
+
+.middle img {
+	width: 2.1rem;
+	margin: 0 auto;
+	margin-bottom: .3rem;
+	display: block
+}
+
+#wpReload {
+	color: #0aa1f8
+}

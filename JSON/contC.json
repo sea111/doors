@@ -1,0 +1,152 @@
+{
+	"data": {
+	    "coupons":[
+		    {
+				"couponId": "11",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "12",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "13",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "14",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "15",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "16",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "1",
+				"type": "1"
+		    },
+		    {
+				"couponId": "1",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "0"
+		    },
+		    {
+				"couponId": "2",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "0"
+		    },
+		    {
+				"couponId": "3",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "2"
+		    },
+		    {
+				"couponId": "4",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "2"
+		    },
+		    {
+				"couponId": "5",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "0"
+		    },
+		    {
+				"couponId": "6",
+				"couponName": "小钢炮优惠券",
+				"address": "余杭区五常大道",
+				"discount": "30",
+				"QRCodeUrl": "xxx",
+				"QRCodeValue": "xxx",
+				"activityStartTime": "2017.03.24",
+				"activityEndTime": "2017.04.17",
+				"couponsType": "0",
+				"type": "2"
+		    }
+	    ],
+		"total": "12"
+	   },
+	   "success": true
+}

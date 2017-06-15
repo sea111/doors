@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>正品控-活动中心</title>
+	</head>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		window.addEventListener("resize",function(){
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		},false);
+	</script>
+	<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	<link rel="stylesheet" href="css/actionCenters.css" />
+	<body>
+		<div class="top">
+			<i class="bg-icon" id="back"></i>
+			<div>活动中心</div>
+		</div>
+		<div id="box">
+			<div class="act_title">
+				<div class="current" content="dis_act_content">我的活动</div>
+				<div content="discountContent">我的返利</div>
+			</div>
+			<!--当前活动-->
+			<div id="dis_act_content" class="current dis_content">
+				
+			</div>
+			<!--当前返利-->
+			<div id="discountContent" class="dis_content">
+				
+			</div>
+			<!--失效活动-->
+			<div id="un_act_content" class="dis_content">
+				
+			</div>
+			<!--失效返利-->
+			<div id="undiscountContent" class="dis_content">
+				
+			</div>
+			<div class="look"><span class="more" content="un_act_content">查看更多</span>已使用/已过期返利券</div>
+		</div>
+		<div class="loading">
+			<div class="loadEffect"> 
+				<p></p>
+				<span>Loading</span> 
+			</div>
+			<div class="middle" style="display: none;"><img src="images/scan_net.png"/><p>网络异常，点击<a href="javascript:;" id="wpReload">重新加载</a></p></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script src="lib/jquery.dotdotdot.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/laytpl.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/html" id="rebate_vouchers">
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].type==1){ }}
+				<div class="discountBox">
+			{{# }else{ }}
+				<div class="discountBox unactivity">
+			{{# } }}
+				<div class="cont">
+					<div class="left">
+						<span class="num"><i class="sign">￥</i>{{ d[i].preferential }}</span>
+					</div>
+					<div class="introduce">
+						<p class="title">{{ d[i].title }}</p>
+						<p class="intro">用户{{ d[i].user }}通过您的分享购买了产品，您可获得{{ d[i].preferential }}元现金返利</p>
+						<p class="data">时间:<span class="data">{{ d[i].activetime }}</span></p>
+					</div>
+				</div>
+				{{# if(d[i].type==1){ }}
+					<div class="status">该返利可以兑现了，速去门店兑现吧</div>
+				{{# }else if(d[i].type==0){ }}
+					<div class="status">该返利已兑现</div>
+				{{# }else if(d[i].type==2){ }}
+					<div class="status">该返利已过期</div>
+				{{# } }} 
+			</div>
+		{{# } }}
+	</script>
+	<script type="text/html" id="rebate_activity">
+		{{# for(var i=0;i<d.length;i++){ }}
+			{{# if(d[i].type==1){ }}
+				<div class="activity_list activity">
+			{{# }else if(d[i].type==2){ }}
+				<div class="activity_list act_cancel">
+			{{# }else{ }}
+				<div class="activity_list act_timeout">
+			{{# } }}
+				<div class="activity_list_title"><span>{{ d[i].brandName }}</span>返利活动</div>
+				<div class="activity_content">
+					<div class="activity_content_left">
+						{{# if(d[i].type==1){ }}
+							<img src="{{ d[i].PicUrl}}" errType="now" alt="" />
+						{{# }else if(d[i].type==2){ }}
+							<img src="{{ d[i].PicUrl}}" errType="cancel" alt="" />
+						{{# }else{ }}
+							<img src="{{ d[i].PicUrl}}" errType="timeout" alt="" />
+						{{# } }}
+						
+					</div>
+					<div class="activity_content_right">
+						<p class="activity_info">
+							<span>{{ d[i].brandName }}</span>现推出返利活动！即日起分享该活动页面即可参加。
+						</p>
+						<p class="activity_time">
+							活动时间：<span>{{d[i].activetime}}</span>
+						</p>
+						<div class="activity_status">
+							{{# if(d[i].type==1){ }}
+								<div>进行中</div>
+							{{# }else if(d[i].type==2){ }}
+								<div>已取消</div>
+							{{# }else{ }}
+								<div>已过期</div>
+							{{# } }}
+						</div>
+					</div>
+				</div>
+			</div>
+		{{# } }}
+	</script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script>
+		function resetCss(){
+			var count=Math.ceil($('.discountBox').width()/19);
+			$('.discountBox').each(function(){
+				if(!$(this).hasClass('complete')){
+					$(this).width(19*count);
+					$(this).find('.intro').dotdotdot();
+					$(this).addClass('complete');
+				}
+			})
+		}
+
+		$(function(){
+			var scrollEndTimer=null;
+			var page={
+				disActContent:1,
+				disCountContent:1,
+				unActContent:1,
+				undisCountContent:1
+			}
+			var pageSize=6;
+			var complete=true;
+			//获取数据
+			function getData(type){
+				var url='';
+				var obj='';
+				var layHTML='';
+				switch(type){
+					case 'disActContent':
+						url='JSON/ActContent.json';
+						obj=$('#dis_act_content');
+						layHTML=$('#rebate_activity').html();
+						break;
+					case 'disCountContent':
+						url='JSON/CountContent.json';
+						obj=$('#discountContent');
+						layHTML=$('#rebate_vouchers').html();
+						break;
+					case 'unActContent':
+						url='JSON/unActContent.json';
+						obj=$('#un_act_content');
+						layHTML=$('#rebate_activity').html();
+						break;
+					case 'undisCountContent':
+						url='JSON/undisCountContent.json';
+						obj=$('#undiscountContent');
+						layHTML=$('#rebate_vouchers').html();
+						break;
+				}
+				if(complete){
+					complete=false;
+					$.ajax({
+						url:url,
+						type:'get',
+						data:{
+							page:page[type],
+							pageSize:pageSize
+						},
+						timeout:10000,
+						success:function(res){
+							if(res.success){
+								try{
+									$(".loading").hide();
+									if(page[type]==Math.ceil(res.total/pageSize)){
+										obj.addClass('complete');
+									}
+									page[type]+=1;
+									complete=true;
+									laytpl(layHTML).render(res.data,function(html){
+										obj.append(html);
+										resetCss()
+										$('img').on('error',function(){
+											var $t=$(this);
+											$t.attr('src','images/'+$t.attr('errType')+'_error.png');
+										})
+									})
+								}catch(e){
+									$(".loadEffect").hide().siblings(".middle").show();
+									$(".middle img").attr('src',"images/error_else.png");
+									$(".middle p").html("出错了，请稍后再试");
+								}
+							}
+						}
+					})
+				}
+			}
+			//获取类型
+			function getType(name){
+				var type='';
+				switch(name){
+					case 'dis_act_content':
+						type='disActContent';
+						break;
+					case 'discountContent':
+						type='disCountContent';
+						break;
+					case 'un_act_content':
+						type='unActContent';
+						break;
+					case 'undiscountContent':
+						type='undisCountContent';
+						break;
+				}
+				return type;
+			}
+			getData('disActContent');
+			$(window).on('scroll',function(){
+				var scrollTop=$(this).scrollTop();
+				clearTimeout(scrollEndTimer);
+				scrollEndTimer=setTimeout(function(){
+					var scroll=scrollTop+$(window).height();
+					var wh=$('.dis_content.current').height()+$('.dis_content.current').offset().top
+					if(scroll>(wh-10)){
+						$('.dis_content').each(function(){
+							var $t=$(this);
+							if($t.hasClass('current')){
+								if(!$t.hasClass('complete')){
+									$(".loadEffect").css({
+										top:$(".loadEffect").offset().top+scrollTop
+									})
+									$(".loading").show().siblings(".middle").hide();
+									var id=$t.attr('id');
+									var type=getType(id);
+									getData(type);
+								}
+								return false; 
+							}
+						})
+					}
+				},300)
+			})
+			//切换活动和返利
+			function changeContent($t){
+				var obj=$t.attr('content');
+				var $obj=$('#'+obj);
+				$('.dis_content.current').removeClass('current');
+				$obj.addClass('current');
+				if(!$obj.html().trim()){
+					var type=getType(obj);
+					getData(type);
+				}
+				if(obj=='dis_act_content'){
+					$('.look .more').attr('content','un_act_content');
+				}else if(obj=='discountContent'){
+					$('.look .more').attr('content','undiscountContent');
+				}
+				$(window).scrollTop(0);
+			}
+			$('.act_title div').on('click',function(){
+				var $t=$(this);
+				if(!$t.hasClass('current')){
+					$('.act_title .current').removeClass('current')
+					$t.addClass('current');
+					changeContent($t);
+					
+				}
+			})
+			//查看更多
+			$('.look .more').on('click',function(){
+				var $t=$(this);
+				$('.look').hide();
+				$('.act_title').hide();
+				changeContent($t);
+				if($t.attr('content')=='un_act_content'){
+					$('.top div').html('失效活动')
+				}else{
+					$('.top div').html('失效返利')
+				}
+			})
+			//后退
+			$('#back').on('click',function(){
+				if($('.look:visible').length){
+					//调用app
+				}else{
+					$('.dis_content').each(function(){
+						var $t=$(this);
+						if($t.hasClass('current')){
+							var id=$t.attr('id');
+							$('.look').show();
+							$('.act_title').show();
+							$('.top div').html('活动中心')
+							changeContent($('.act_title .current'));
+							return false; 
+						}
+					})
+				}
+			})
+		})
+	</script>
+</html>

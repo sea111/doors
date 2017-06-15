@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />	
+		<title>正品控</title>
+	</head>
+	<link rel="stylesheet" href="css/shareRebate.css" />
+	<script>
+		if(document.documentElement.clientWidth>760){
+			document.documentElement.style.fontSize=54+"px";
+		}else{
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+		}
+		window.addEventListener("resize",function(){
+			if(document.documentElement.clientWidth>760){
+				document.documentElement.style.fontSize=54+"px";
+			}else{
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+			}
+		},false);
+	</script>
+	<body>
+		<div id="wrap">
+			<div id="content">
+				<div id="valueCont">
+					<div class="user">用户<span class="tel">15212341234</span>分享给你一张“”门店优惠券，面值<span class="value">20</span>元</div>
+					<div class="red">
+						<div class="redLeft">
+							<div class="rmb">
+								<p class="moneyL">20</p>
+								<div class="moneyR">
+									<p class="rmbYellow">RMB</p>
+									<p class="rmbQ">优惠券</p>
+								</div>
+								
+							</div>
+							<div class="action">	
+								<p class="activeTime">时间: <span class="article" id="act_time">2017.3.2至2017.4.2</span></p> 
+							</div>
+							<div class="address">		
+								<p class="place">地点: <span class="article" id="act_place">余杭区余杭区五常大道</span></p>	 
+							</div>
+						</div>
+						<div class="redRight">领取</div>
+					</div>
+					<p class="cheap">优惠产品</p>
+					<div class="cheapBox">
+						<dl class="product-items" style="display: none;" dataId="">
+							<dt>
+								<img src="" class="images"/>
+							</dt>
+							<dd>
+								<i class="yellow"></i>
+								<p class="series">小钢炮 东风p系列</p>
+								<p class="type">P6035s</p>
+							</dd>
+						</dl>						
+					</div>
+					<div id="pullUp" class="scroller-pullUp" style="display: none;">
+			            <p></p>
+			           	<span>上拉加载</span>
+			        </div>
+				</div>
+				<div id="productCont">
+					<div class="productImg"><img src="" alt="" /></div>
+					<div class="get">领取你好友的优惠券，享受优惠</div>
+					<form action="javascript:;" style="overflow-x:hidden"><input class="import" type="number" placeholder="输入手机号领取"  oninput="if(value.length>11)value=value.slice(0,11)" /></form>
+					<a id="getFare" href="javascript:;">领取优惠券</a>
+				</div>
+				<div id="useValueCont">
+					<div class="productImg"><img src="" alt="" /></div>
+					<div class="get">领取你好友的优惠券，享受优惠</div>
+					<p class="put">一张""优惠券，已放入你的正品控账户</p>
+					<p class="local">当前您的手机号：<span id="number">15212341234</span></p>
+					<a id="downLoad" href="javascript:;">下载"正品控"APP，使用优惠券</a>
+				</div>
+			</div>
+			<div class="loading">
+				<div class="loadEffect"> 
+					<p></p>
+					<span>Loading</span> 
+				</div>
+				<div class="middle" style="display:none"><img src="images/scan_net.png"/><p>网络异常，点击<a href="javascript:;" id="wpReload">重新加载</a></p></div>
+			</div>
+		</div>		
+	</body>
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="lib/iscroll-probe.js" ></script>
+	<script type="text/javascript" src="lib/wpCommon.js" ></script>
+	<script>
+		//领取跳转页面
+		$(".red").click(function(){
+			$.ajax({
+				
+			})
+			$('#productCont').show().siblings().hide()
+		})
+		
+		$(".import").on('keyup',function(){
+			var value=$(this).val();
+			if((/^1[34578]\d{9}$/).test(value)&&value.length==11){
+				$("#getFare").css('background','#D6A41D')
+			}else{
+				$("#getFare").css('background','ccc')
+			}
+		})
+		//领取优惠券跳转页面
+		
+		
+		var wpwlRebate={
+			getData:function(){
+				var that=this;
+				$.ajax({
+					url: "JSON/list.json",
+//					type: "post",
+					timeout: 10000,
+					beforeSend: function() {
+						$(".loadEffect").show().siblings(".middle").hide()
+					},
+					success: function(res) {
+						if (res.errMsg == "找不到指定的产品，请稍后再试，谢谢！" || res.errMsg == "找不到指定的产品") {
+							$(".loadEffect").hide();
+							$(".middle").show().find("p").html("该产品已下架").siblings("img").attr("src", "images/notFound.png")
+						} else {
+							window.productInfo = res;
+							that.cheapGoods();
+						} 
+					},
+					error: function(jqXHR) {
+						$(".loadEffect").hide().siblings(".middle").show()
+					}
+				})
+			},
+			cheapGoods:function(){	
+				
+				for(var i=0;i<productInfo.length;i++){
+					var ele=$(".product-items").eq(0).clone();
+					ele.find('.series').html(productInfo[i].data.list[0].series).siblings('p').html(productInfo[i].data.list[0].standard);
+					ele.show().find('img').attr('src',productInfo[i].data.list[0].iconUrl);
+					ele.attr('dataId',productInfo[i].data.list[0].productId)
+					$(".cheapBox").append(ele);
+				}
+				$(".loading").hide().siblings('#content').show()
+				myScroll.refresh();
+				$("#pullUp").hide();
+				$('img').each(function(){
+					//deferred对象就是jQuery的回调函数解决方案
+					var dfd=$.Deferred();
+					$(this).bind('load',function(){
+						//dfd.resolve()的意思是，将dfd对象的执行状态从"未完成"改为"已完成"
+				 		//还存在一个deferred.reject()方法，作用是将dtd对象的执行状态从"未完成"改为"已失败"
+				 		dfd.resolve();
+				 	}).bind('error',function(){
+				 		$(this).attr('src',"images/default_error2.png")
+				 	})
+				})
+				isScroll=true;
+				
+			}
+		}
+		
+		wpwlRebate.getData();
+		
+		$(function(){
+			myScroll = new IScroll("#content", {
+				probeType:2,
+				checkDOMChanges:true,
+		 		click:true,
+		 		disableTouch:false,
+				disablePointer:true
+			});
+			var num=2;
+		 	window.lock=true;
+		 	window.isScroll=true;
+			myScroll.on("scroll", function () {
+		        if (myScroll.maxScrollY - myScroll.y >= 40) {
+		            $("#pullUp").show()
+		        }
+		        $(document).on("touchend", function () {
+		            if (isScroll) {
+		                if (myScroll.maxScrollY - myScroll.y >= 40) {
+		                    if (lock) {
+		                        wpwlRebate.getData()
+		                    } else {
+		                        $("#pullUp").hide()
+		                    }
+		                    num++;
+		                    isScroll = false;
+		                    return
+		                }
+		            }
+		            if (!lock) {
+		                $("#PullUp").hide()
+		            }
+		        })
+		    });
+//			myScroll.on("scrollStart",function(){
+//				myScroll.refresh()
+//			})
+		})
+		
+		$("#wpReload").click(function(){
+			wpwlRebate.getData();
+		})
+		$("#getFare").click(function(){
+			$('.import').blur()
+			if((/^1[34578]\d{9}$/).test($(".import").val())){
+				$.ajax({
+					url:"",
+					type:'post',
+					success:function(){
+						
+					},
+					error:function(){
+						
+					}
+				})
+				$('#useValueCont').show().siblings().hide();
+				$("#number").html($(".import").val());
+			}
+		})
+		
+		$("#downLoad").click(function(){
+			window.location.href = "http://www.wopuwulian.com/app.html"
+		})
+		
+		$('.cheapBox').on('click',".product-items",function(){  
+	  		window.location.href='share.html?productId='+$(this).attr('dataId');
+		});
+	</script>
+</html>
